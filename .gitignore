@@ -1,6 +1,7 @@
 .idea/
 
 **/target/**
+/data/**
 **/.settings/**
 **/classes/**
 **/.project
@@ -13,5 +14,5 @@
 /.classpath
 /.mymetadata
 /WebRoot
-/target/**
-/data/**
+/target/
+/gc.log

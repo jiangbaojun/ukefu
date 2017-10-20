@@ -43,7 +43,7 @@
                 <multicast-time-to-live>32</multicast-time-to-live>
                 <multicast-timeout-seconds>2</multicast-timeout-seconds>
                 <trusted-interfaces>
-                   <interface>140.100.100.60</interface>
+                   <interface>127.0.0.1</interface>
                 </trusted-interfaces>   
             </multicast>
             <tcp-ip enabled="false">
