@@ -67,6 +67,7 @@ public class IMEventHandler
 				 */
 				InetSocketAddress address = (InetSocketAddress) client.getRemoteAddress()  ;
 				String ip = UKTools.getIpAddr(client.getHandshakeData().getHttpHeaders(), address.getHostString()) ;
+//				分配坐席（客服），获得分配结果消息
 				NewRequestMessage newRequestMessage = OnlineUserUtils.newRequestMessage(user, orgi , session , appid , ip , client.getHandshakeData().getSingleUrlParam("osname") , client.getHandshakeData().getSingleUrlParam("browser") , UKDataContext.ChannelTypeEnum.WEBIM.toString() , skill , agent , nickname , title , url , traceid) ;
 //				/**
 //				 * 加入到 缓存列表

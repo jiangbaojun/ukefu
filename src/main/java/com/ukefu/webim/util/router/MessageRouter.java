@@ -26,11 +26,13 @@ public class MessageRouter extends Router{
 			 */
 			if(outMessage.getAgentUser()!=null && outMessage.getAgentUser().getStatus()!=null){
 				if(outMessage.getAgentUser().getStatus().equals(UKDataContext.AgentUserStatusEnum.INQUENE.toString())){
+//					等待队列，提示有多少人在等待
 					int queneIndex = ServiceQuene.getQueneIndex(inMessage.getAgentUser().getAgent() , inMessage.getOrgi(), inMessage.getAgentUser().getSkill()) ;
 					if(UKDataContext.AgentUserStatusEnum.INQUENE.toString().equals(outMessage.getAgentUser().getStatus())){
 						outMessage.setMessage(ServiceQuene.getQueneMessage(queneIndex , outMessage.getAgentUser().getChannel()));
 					}
 				}else if(outMessage.getAgentUser().getStatus().equals(UKDataContext.AgentUserStatusEnum.INSERVICE.toString())){
+//					正在服务中
 					
 				}
 			}else if(UKDataContext.MessageTypeEnum.NEW.toString().equals(inMessage.getMessageType())){
@@ -38,6 +40,7 @@ public class MessageRouter extends Router{
 				 * 找到空闲坐席，如果未找到坐席， 则将该用户放入到 排队队列 
 				 * 
 				 */
+//				分配坐席
 				AgentService agentService = ServiceQuene.allotAgent(inMessage.getAgentUser(), inMessage.getOrgi()) ;
 				if(agentService!=null && UKDataContext.AgentUserStatusEnum.INSERVICE.toString().equals(agentService.getStatus())){
 					outMessage.setMessage(ServiceQuene.getSuccessMessage(agentService , inMessage.getAgentUser().getChannel()));

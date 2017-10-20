@@ -177,8 +177,12 @@ public class AgentEventHandler
     		 */
     		UKDataContext.getContext().getBean(ChatMessageRepository.class).save(data) ;
 
-    		client.sendEvent(UKDataContext.MessageTypeEnum.MESSAGE.toString(), data);
+//    		回显(多终端)
+    		NettyClients.getInstance().sendAgentEventMessage(data.getUserid(), UKDataContext.MessageTypeEnum.MESSAGE.toString(), data);
+//    		回显（当前）
+    		//client.sendEvent(UKDataContext.MessageTypeEnum.MESSAGE.toString(), data);
     		
+//    		把消息转发给客户，如果客户的渠道正确
 	    	if(!StringUtils.isBlank(data.getTouser())){
 	    		OutMessageRouter router = null ; 
 	    		router  = (OutMessageRouter) UKDataContext.getContext().getBean(agentUser.getChannel()) ;

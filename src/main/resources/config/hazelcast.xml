@@ -28,7 +28,7 @@
         <password>UCKeFu-1234567890</password>
     </group>
     <network>
-        <port auto-increment="true" port-count="1">5701</port>
+        <port auto-increment="true" port-count="100">5701</port>
         <outbound-ports>
             <!--
             Allowed port range when connecting to other nodes.
@@ -38,8 +38,8 @@
         </outbound-ports>
         <join>
 	        <multicast enabled="true">
-                <multicast-group>224.2.2.3</multicast-group>
-                <multicast-port>54327</multicast-port>
+                <multicast-group>224.2.2.4</multicast-group>
+                <multicast-port>54328</multicast-port>
                 <multicast-time-to-live>32</multicast-time-to-live>
                 <multicast-timeout-seconds>2</multicast-timeout-seconds>
                 <trusted-interfaces>

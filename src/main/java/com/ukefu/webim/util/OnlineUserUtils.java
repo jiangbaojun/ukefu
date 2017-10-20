@@ -601,6 +601,33 @@ public class OnlineUserUtils {
 		return source;
 	}
 
+	/**
+	 * @Description:	分配坐席
+	 * @Title:			newRequestMessage  
+	 * @param:			@param user			客户ID
+	 * @param:			@param nickname		客户昵称（网页显示名称）
+	 * @param:			@param orgi			
+	 * @param:			@param session		
+	 * @param:			@param appid		
+	 * @param:			@param ip			
+	 * @param:			@param osname
+	 * @param:			@param browser
+	 * @param:			@param headimg
+	 * @param:			@param ipdata
+	 * @param:			@param channel
+	 * @param:			@param skill
+	 * @param:			@param agent
+	 * @param:			@param title
+	 * @param:			@param url
+	 * @param:			@param traceid
+	 * @param:			@return
+	 * @param:			@throws Exception    
+	 * @return:			NewRequestMessage    
+	 * @throws： 
+	 * @author：			 姜宝俊
+	 * @version：		V0.1  
+	 * @Date：			2017-10-20 下午3:15:36
+	 */
 	private static NewRequestMessage newRequestMessage(String user , String nickname, String orgi,
 			String session, String appid, String ip, String osname,
 			String browser , String headimg , IP ipdata , String channel , String skill , String agent, String title, String url , String traceid) throws Exception {
@@ -617,6 +644,7 @@ public class OnlineUserUtils {
 				AgentUserService.class);
 		AgentUser agentUser = service.findByUseridAndOrgi(user , orgi);
 		if (agentUser == null) {
+//			该客户首次咨询
 			agentUser = new AgentUser(data.getUserid(),channel,
 					data.getUserid(), null, data.getOrgi(), data.getAppid()); // 创建排队用户的信息，当前用户只能在队列里存在一次，用
 																				// UserID作为主键ID存储
@@ -643,6 +671,7 @@ public class OnlineUserUtils {
 			agentUser.setHeadimgurl(headimg);
 			// agentUser.setId(data.getUserid());
 		}else if(!agentUser.getUsername().equals(nickname)){
+//			更新用户名和昵称
 			agentUser.setUsername(nickname);
 			agentUser.setNickname(nickname);
 		}
@@ -654,6 +683,7 @@ public class OnlineUserUtils {
 		CousultInvite invite = OnlineUserUtils.cousult(appid, orgi, UKDataContext.getContext().getBean(ConsultInviteRepository.class)) ;
 		if(invite!=null && !invite.isTraceuser()){
 			OnlineUser onlineUser = (OnlineUser) CacheHelper.getOnlineUserCacheBean().getCacheObject(user, orgi) ;
+//			当前客户是否在在线客户列表中存在
 			if(onlineUser!=null){
 				OnlineUserRepository onlineUserRes = UKDataContext.getContext().getBean(OnlineUserRepository.class) ;
 				if(onlineUserRes.countByUseridAndOrgi(user, orgi) == 0){
@@ -693,9 +723,10 @@ public class OnlineUserUtils {
 //		}
 
 		MessageDataBean outMessageDataBean = null ;
-		
+//		对话策略
 		SessionConfig sessionConfig = ServiceQuene.initSessionConfig(data.getOrgi()) ;
 		
+		//工作时间段判断
 		if(sessionConfig.isHourcheck() && !UKTools.isInWorkingHours(sessionConfig.getWorkinghours())){
 			data.setMessage(sessionConfig.getNotinwhmsg());
 		}else{

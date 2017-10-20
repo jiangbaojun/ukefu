@@ -276,6 +276,7 @@ var ukefu = {
 		</#if>
 		url = url+"&url="+encodeURIComponent(location.href) ;
 		try{
+			//新窗口打开
 			window.open(url+"&t="+new Date().getTime(), "_blank");
 			//window.open(url+"&t="+new Date().getTime(), "ukefu-chat", "height=600, width=850, top="+ (window.screen.availHeight - 30 - 600) /2+", left="+(window.screen.availWidth - 10 - 750)/2+",toolbar=no, menubar=no, scrollbars=no, resizable=no, directories=no,location=no, status=no");
 		}catch(e){}

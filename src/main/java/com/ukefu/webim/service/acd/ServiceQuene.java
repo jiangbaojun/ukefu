@@ -181,6 +181,7 @@ public class ServiceQuene {
 	
 	/**
 	 * 为坐席批量分配用户
+	 * 结束对话后（或者关闭聊天对话框、超时断开），如果有等待的客户，主动分配
 	 * @param agentStatus
 	 * @throws Exception 
 	 */
@@ -271,6 +272,7 @@ public class ServiceQuene {
 				SessionConfig sessionConfig = ServiceQuene.initSessionConfig(agentStatus.getOrgi()) ;
 				long maxusers = sessionConfig!=null ? sessionConfig.getMaxuser() : UKDataContext.AGENT_STATUS_MAX_USER ;
 				if(agentStatus.getUsers() < maxusers){
+//					分配客服（坐席）
 					allotAgent(agentStatus.getAgentno(), orgi);
 				}
 			}
@@ -336,7 +338,7 @@ public class ServiceQuene {
 			if(agentStatus.getUsers() >= initSessionConfig(orgi).getMaxuser()){
 				agentStatus = null ;
 				/**
-				 * 判断当前有多少人排队中 ， 分三种情况：1、请求技能组的，2、请求坐席的，3，默认请求的
+				 * 当前坐席服务人数大于最大等于接收人数，判断当前有多少人排队中 ， 分三种情况：1、请求技能组的，2、请求坐席的，3，默认请求的
 				 * 
 				 */
 				queneIndex = (getQueneIndex(agentUser.getAgent(), orgi, agentUser.getSkill()));
