@@ -1,0 +1,17 @@
+.idea/
+
+**/target/**
+**/.settings/**
+**/classes/**
+**/.project
+**/.classpath
+**/.mymetadata
+**/META-INF/**
+
+/.settings/**
+/.project
+/.classpath
+/.mymetadata
+/WebRoot
+/target/**
+/data/**
