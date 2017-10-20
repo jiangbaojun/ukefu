@@ -1,7 +1,7 @@
 
 该项目修改自：[https://gitee.com/open-java/ukefu](https://gitee.com/open-java/ukefu)
 
-原项目官方网站：[http://ukewo.cn/]http://ukewo.cn/
+原项目官方网站：[http://ukewo.cn/](http://ukewo.cn)
 
 #优客服
 优客服官方技术支持QQ群（555834343，目前项目已发布v3.0.0版本，加入QQ群可以了解最新进度和技术问题咨询。）：
