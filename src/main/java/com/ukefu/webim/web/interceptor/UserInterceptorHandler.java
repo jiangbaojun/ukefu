@@ -63,9 +63,6 @@ public class UserInterceptorHandler extends HandlerInterceptorAdapter {
 	    	view.addObject("webimport",UKDataContext.getWebIMPort()) ;
 	    	view.addObject("sessionid", UKTools.getContextID(arg0.getSession().getId())) ;
 	    	
-//	    	此处判断是否开启企业版内部沟通（注意，开源官方明确表示是收费的功能。可破解）
-	    	UKDataContext.model.put("im", true);
-	    	
 	    	view.addObject("models", UKDataContext.model) ;
 			/**
 			 * WebIM共享用户

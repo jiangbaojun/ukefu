@@ -24,7 +24,13 @@ public class Application {
 	
 	static{
     	UKDataContext.model.put("contacts", true) ;
-//    	UKDataContext.model.put("im", true) ;
+//    	此处判断是否开启企业版内部沟通（注意，开源官方明确表示是收费的功能。可破解）
+    	UKDataContext.model.put("im", true);
+//    	下面的功能不可用
+//    	UKDataContext.model.put("workorders", true);
+//    	UKDataContext.model.put("xiaoe", true);
+//    	UKDataContext.model.put("sales", true);
+    	
     }
 	
     @Bean   
