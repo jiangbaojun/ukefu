@@ -170,7 +170,7 @@ var ukefu = {
 						<#else>
 						"<img src='${schema!'http'}://${hostname!''}<#if port?? && port != 80>:${port!''}</#if>/images/title.jpg' style='width:140px;margin:0 5px;vertical-align: middle;'/>"+
 						</#if>
-						"<div style='padding:10px 5px;text-align:center;color:#555;'><#if inviteData?? && inviteData.skill == true && inviteData.consult_skill_msg??>${(inviteData.consult_skill_msg!'')?no_esc}</#if></div>"+
+						"<div style='padding:10px 5px;text-align:center;color:#555;'><#if inviteData?? && inviteData.skill == true && inviteData.consult_skill_msg??>${(workTime!'')?no_esc}</#if></div>"+
 						
 						<#if skillList?? && skillList?size gt 0>
 						<#list skillList as skill>
@@ -202,7 +202,9 @@ var ukefu = {
 						</#if>
 						</#list>
 						<#elseif inviteData.onlyareaskill && inviteData.areaskilltipmsg??>
-						"<div style='padding:10px 5px;text-align:center;color:#555;border-top:1px solid #dedede;'>${(inviteData.areaskilltipmsg!'')?no_esc}</div>"+
+<!-- 						"<div style='padding:10px 5px;text-align:center;color:#555;border-top:1px solid #dedede;'>${(inviteData.areaskilltipmsg!'')?no_esc}</div>"+ -->
+						"<div style='padding:10px 5px;text-align:center;color:#555;'><button class='' style='display: inline-block;height: 38px;line-height: 38px;padding: 0 18px;background-color: #009688;color: #fff;white-space: nowrap;text-align: center;font-size: 14px;border: none;border-radius: 2px;cursor: pointer;opacity: .9;filter: alpha(opacity=90);' onclick='ukefu.acceptInvite();ukefu.openChatDialog();'>现在咨询</button></div>"+
+						
 						</#if>
 						
 						"</div>"+

@@ -148,7 +148,11 @@ public class IMController extends Handler{
 			view.addObject("ip", UKTools.md5(request.getRemoteAddr())) ;
 			
 			view.addObject("mobile", CheckMobile.check(request.getHeader("User-Agent"))) ;
-			
+//			获得工作时间段显示
+			SessionConfig sessionConfig = ServiceQuene.initSessionConfig(request.getSession(true).getAttribute(UKDataContext.USER_SESSION_NAME)!=null?super.getOrgi(request):"ukewo") ;
+			if(sessionConfig !=null){
+				view.addObject("workTime", "工作时间<br/>"+sessionConfig.getWorkinghours().replaceAll(",", "<br/>"));
+			}
 			CousultInvite invite = OnlineUserUtils.cousult(id, super.getOrgi(request), inviteRepository);
 	    	if(invite!=null){
 	    		view.addObject("inviteData", invite);
@@ -342,6 +346,7 @@ public class IMController extends Handler{
 			map.addAttribute("ukefport", request.getServerPort()) ; 
 			AgentReport report = ServiceQuene.getAgentReport(invite.getOrgi()) ;
 			
+//			判断是否有客服在线、在工作时间段、开启留言功能（注意相应表数据修改，暂无设置选项，后续可添加）
 			if(report.getAgents() ==0 ||  (sessionConfig.isHourcheck() && !UKTools.isInWorkingHours(sessionConfig.getWorkinghours()) && invite.isLeavemessage())){
 				view = request(super.createRequestPageTempletResponse("/apps/im/leavemsg")) ;
 			}else if(invite.isConsult_info()){	//启用了信息收集 , 从Request获取 ， 或从 Cookies 里去
