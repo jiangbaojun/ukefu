@@ -141,7 +141,8 @@ public class EntIMEventHandler
 				data.setCalltype(UKDataContext.CallTypeEnum.IN.toString());
 				data.setContextid(user);
 				data.setUserid(data.getTouser());
-				data.setId(null);
+//				主键生成策略为assignend
+//				data.setId(null);
 				chatMessageRes.save(data) ; 	//每条消息存放两条，一个是我的对话记录 ， 另一条是对方的对话历史， 情况当前聊天记录的时候，只清理自己的
 				NettyClients.getInstance().sendEntIMEventMessage(data.getTouser(), UKDataContext.MessageTypeEnum.MESSAGE.toString(), data);	//发送消息给目标用户
 				

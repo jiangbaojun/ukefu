@@ -36,7 +36,7 @@ public class UserInterceptorHandler extends HandlerInterceptorAdapter {
         }
         return filter ; 
     }
-
+    
     public void postHandle(HttpServletRequest arg0, HttpServletResponse response, Object arg2,
             ModelAndView view) throws Exception {
     	User user = (User) arg0.getSession().getAttribute(UKDataContext.USER_SESSION_NAME) ;
@@ -63,7 +63,7 @@ public class UserInterceptorHandler extends HandlerInterceptorAdapter {
 	    	view.addObject("webimport",UKDataContext.getWebIMPort()) ;
 	    	view.addObject("sessionid", UKTools.getContextID(arg0.getSession().getId())) ;
 	    	
-//	    	此处判断是否开启企业版内部沟通（不能接收发消息，是收费的）
+//	    	此处判断是否开启企业版内部沟通（注意，开源官方明确表示是收费的功能。可破解）
 	    	UKDataContext.model.put("im", true);
 	    	
 	    	view.addObject("models", UKDataContext.model) ;
